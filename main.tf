@@ -47,8 +47,18 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+data "aws_vpc" "default_vpc_data" {
+  default = true
+}
+
+data "aws_subnet" "default_subnet" {
+  id     = "subnet-034e185bc2d4644cb" // AZ: ap-south-1
+  vpc_id = data.aws_vpc.default_vpc_data.id
+}
+
 resource "aws_instance" "pokemon_app_ec2" {
   ami           = data.aws_ami.ubuntu.id
+  subnet_id     = data.aws_subnet.default_subnet.id
   instance_type = "t2.micro"
   key_name      = "aayush_paras"
 }
