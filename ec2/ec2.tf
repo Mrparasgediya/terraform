@@ -71,3 +71,4 @@ resource "aws_instance" "pokemon_app_ec2" {
   key_name        = "aayush_paras"
   security_groups = [aws_security_group.instance_security_group.id]
 }
+

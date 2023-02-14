@@ -12,3 +12,12 @@ provider "aws" {
   region  = "ap-south-1"
   profile = "default"
 }
+
+module "ec2" {
+  source = "./ec2"
+}
+
+module "rds" {
+  source      = "./rds"
+  instance_sg = module.ec2.instance_sg_id
+}

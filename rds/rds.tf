@@ -4,7 +4,7 @@ resource "aws_security_group" "database_sg_rds" {
     from_port       = 3306
     protocol        = "tcp"
     to_port         = 3306
-    security_groups = [aws_security_group.instance_security_group.id]
+    security_groups = [var.instance_sg]
   }
 }
 
